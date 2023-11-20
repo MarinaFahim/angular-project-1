@@ -1,0 +1,29 @@
+<h2>Events:</h2>
+
+<div *ngFor="let event of events">
+    <h3>
+        <a [title]="event.title + ' details'">
+            {{ event.title }}
+        </a>
+    </h3>
+
+    <img src="https://picsum.photos/seed/{{event.id}}/500/300?grayscale"/>
+
+
+    <div *ngIf="event.description">
+        <ul>
+            <li>Description: {{ event.description }}</li>
+            <li>Price: <strong>${{event.price}}</strong></li>
+            <li>Date: On: {{ event.date.toDateString() }}</li>
+        </ul>
+    </div>
+
+    <button type="button" (click)="share()">Share</button>
+
+    <app-event-alerts
+            [event]="event"
+            (notify)="onNotify()">
+    </app-event-alerts>
+
+    <div class="divider"></div>
+</div>
