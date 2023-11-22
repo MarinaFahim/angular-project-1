@@ -148,39 +148,3 @@ can be found in the LICENSE file at https://angular.io/license
 
 
 /*=======*/
-.divider {
-    background: black;
-    height: 2px;
-    width: 100%;
-    margin: 50px 0;
-    overflow: hidden;
-}
-
-.card {
-
-}
-
-.card img {
-    text-align: center;
-    margin: 0 auto;
-    width: 100%;
-}
-
-.card .card-actions {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-app-event-list {
-    border: 1px black solid;
-    margin: 10px 0;
-    background: rgba(25, 118, 210, .1);
-    box-shadow: 5px 5px 20px #1976d2;
-}
-
-app-event-list h1 {
-    text-align: center;
-    text-decoration-line: underline;
-    text-underline-position: under;
-}
