@@ -1,9 +1,10 @@
 <a [routerLink]="['/']">
-  <h1>My Store</h1>
+    <h1>My Store</h1>
 </a>
 
-<a class="button fancy-button"><em class="material-icons">shopping_cart</em>Checkout</a>
-
+<a routerLink="/cart" class="button fancy-button">
+    <em class="material-icons">shopping_cart</em>Checkout {{getCount() > 0 ? '(' + getCount() + ')' :''}}
+</a>
 
 <!-- 
 Copyright Google LLC. All Rights Reserved.

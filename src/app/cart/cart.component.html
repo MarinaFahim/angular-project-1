@@ -1,0 +1,27 @@
+<div *ngIf="items.length > 0">
+    <h3>Cart</h3>
+
+    <p>
+        <a routerLink="/shipping">Shipping Prices</a>
+    </p>
+    <div class="cart-content">
+        <div class="cart-items">
+            <div class="cart-item" *ngFor="let item of items">
+                <span>{{ item.name }}</span>
+                <span>{{ item.price | currency }}</span>
+            </div>
+            <div style="text-align: right;">
+                Total: <strong>{{total|currency}}</strong>
+            </div>
+            <button (click)="clearCart()">Clear Cart</button>
+        </div>
+        <div class="shipping-container">
+            <app-shipping></app-shipping>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="items.length === 0">
+    <h1>Ohhh Looks like your cart is empty.</h1>
+    <p>Your cart is empty please add items and come back...</p>
+</div>
