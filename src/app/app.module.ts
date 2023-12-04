@@ -27,7 +27,7 @@ import {EditProductComponent} from "./edit-product/edit-product.component";
       {path: 'cart', component: CartComponent},
       {path: 'shipping', component: ShippingComponent},
       {path: 'events', component: EventListComponent},
-      {path: '`new-product`', component: NewProductComponent},
+      {path: 'new-product', component: NewProductComponent},
       {path: 'edit-product/:productId', component: EditProductComponent},
     ])
   ],
