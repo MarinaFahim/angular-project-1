@@ -122,6 +122,7 @@ button:hover {
     flex: 0 1 calc(33.333% - 20px);
     /* Adjust the width of each card */
     display: flex;
+    box-shadow: 2px 2px 9px rgb(128, 128, 128);
 }
 
 .card {
