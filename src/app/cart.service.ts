@@ -1,7 +1,9 @@
 import {HttpClient} from '@angular/common/http';
 
 import {Injectable} from '@angular/core';
-import {Product} from "./products";
+import {Product} from "./products.service";
+
+// import {Product} from "./products";
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +18,12 @@ export class CartService {
   }
 
   addToCart(product: Product) {
+    --product.count
     this.items.push(product);
     this.saveCartItems();
-
   }
 
   getItems() {
-    console.log("The cart items are: ", this.items);
     return this.items;
   }
 

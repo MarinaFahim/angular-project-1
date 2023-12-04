@@ -13,6 +13,8 @@ import {EventAlertsComponent} from "./event-alerts/event-alerts.component";
 import {ProductDetailsComponent} from "./product-details/product-details.component";
 import {CartComponent} from "./cart/cart.component";
 import {ShippingComponent} from "./shipping/shipping.component";
+import {NewProductComponent} from "./new-product/new-product.component";
+import {EditProductComponent} from "./edit-product/edit-product.component";
 
 @NgModule({
   imports: [
@@ -25,6 +27,8 @@ import {ShippingComponent} from "./shipping/shipping.component";
       {path: 'cart', component: CartComponent},
       {path: 'shipping', component: ShippingComponent},
       {path: 'events', component: EventListComponent},
+      {path: '`new-product`', component: NewProductComponent},
+      {path: 'edit-product/:productId', component: EditProductComponent},
     ])
   ],
   declarations: [
@@ -36,7 +40,10 @@ import {ShippingComponent} from "./shipping/shipping.component";
     EventAlertsComponent,
     ProductDetailsComponent,
     CartComponent,
-    ShippingComponent
+    ShippingComponent,
+    NewProductComponent,
+    EditProductComponent
+
   ],
   bootstrap: [
     AppComponent

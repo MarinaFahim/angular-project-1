@@ -1,0 +1,28 @@
+<h1>new-product works!</h1>
+
+<!--<form action="/products/create" method="POST" class="product-form">-->
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" class="product-form">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" formControlName="name" required>
+    </div>
+    <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" formControlName="price" step="0.01" required>
+    </div>
+    <div class="form-group">
+        <label for="count">Count:</label>
+        <input type="number" id="count" formControlName="count" step="1" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" formControlName="description" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="image">Image URL:</label>
+        <input type="text" id="image" formControlName="image" required>
+    </div>
+    <button type="submit" class="submit-button">Submit</button>
+</form>
+
+

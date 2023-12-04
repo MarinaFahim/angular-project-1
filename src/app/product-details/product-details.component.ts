@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
-import {Product, products} from '../products';
+// import {Product, products} from '../products';
 import {CartService} from '../cart.service';
+import {Product, ProductsService} from '../products.service';
 
 @Component({
   selector: 'app-product-details',
@@ -13,8 +14,9 @@ import {CartService} from '../cart.service';
 })
 export class ProductDetailsComponent implements OnInit {
   product: Product | undefined;
+  similarProducts: Product[] = [];
 
-  constructor(private route: ActivatedRoute, private cartService: CartService) {
+  constructor(private route: ActivatedRoute, private cartService: CartService, private productsService: ProductsService) {
 
   }
 
@@ -23,11 +25,17 @@ export class ProductDetailsComponent implements OnInit {
     // window.alert('Your product has been added to the cart!');
   }
 
-  ngOnInit() {
-    // First get the product id from the current route.
-    const routeParams = this.route.snapshot.paramMap;
-    const productIdFromRoute = Number(routeParams.get('productId'));
 
+  deleteProduct() {
+    this.productsService.deleteProduct(this.product?.id)
+    window.location.href = '/';
+  }
+
+  async ngOnInit() {
+    const routeParams = this.route.snapshot.paramMap;
+    const productIdFromRoute = routeParams.get('productId');
+    const products = await this.productsService.getProducts()
     this.product = products.find(product => product.id === productIdFromRoute);
+    this.similarProducts = await this.productsService.getSimilarProducts(this.product.id)
   }
 }

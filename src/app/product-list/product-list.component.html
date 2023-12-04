@@ -1,34 +1,34 @@
-<h2>Products</h2>
+<h1 style="text-align: center">Products</h1>
 
+<h2 style="width:300px; text-align: center">
+    <a class="share-button" style="display:block; text-align: center;" href="/new-product" style="display:block;">Create
+        product</a>
+</h2>
+<div class="products-list-container">
+    <div class="product-card" *ngFor="let product of products">
+        <div class="card">
+            <div class="card-image-placeholder">
+                <img src="{{ product.image }}" alt="{{ product.name }}"/>
+            </div>
+            <div class="card-body">
+                <h3>
+                    <a [title]="product.name + ' details'" [routerLink]="['/products', product.id]">
+                        {{ product.name }}
+                    </a>
+                </h3>
 
-<!-- 
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at https://angular.io/license
--->
+                <p *ngIf="product.description">
+                    Description: {{ product.description }} - <strong>${{ product.price }}</strong>
+                </p>
 
-
-<div *ngFor="let product of products">
-
-    <h3>
-        <a
-                [title]="product.name + ' details'"
-                [routerLink]="['/products', product.id]">
-            >
-            {{ product.name }}
-
-        </a>
-    </h3>
-
-
-    <p *ngIf="product.description">
-        Description: {{ product.description }} - ${{product.price}}
-    </p>
-
-    <button type="button" (click)="share()">Share</button>
-
-    <app-product-alerts
-            [product]="product"
-            (notify)="onNotify()">
-    </app-product-alerts>
+                <div class="button-container">
+                    <button type="button" class="add-cart-button {{product.count>0? '':'out-class'}}"
+                            [disabled]="product.count <= 0"
+                            (click)="addToCart(product)">{{product.count>0? 'Add to cart':'Out of stock'}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+

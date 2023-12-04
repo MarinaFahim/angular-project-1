@@ -1,8 +1,73 @@
-<h2>Product Details</h2>
+<div class="product-details-container">
+    <h2>Product Details</h2>
+    <div *ngIf="product" class="product-details">
+        <div class="product-info">
+            <div class="product-image">
+                <img src="{{ product.image }}" alt="{{ product.name }}"/>
+            </div>
+            <div class="product-description">
+                <h3>{{ product.name }}</h3>
+                <h4>{{ product.price | currency }}</h4>
+                <p>{{ product.description }}</p>
+            </div>
+        </div>
 
-<div *ngIf="product">
-    <h3>{{ product.name }}</h3>
-    <h4>{{ product.price | currency }}</h4>
-    <p>{{ product.description }}</p>
-    <button type="button" (click)="addToCart(product)">Buy</button>
+        <div class="button-container">
+            <button type="button" (click)="addToCart(product)" [disabled]="product.count <= 0" class="buy-button">
+                {{ product.count > '0' ? 'Buy' : 'Out of Stock' }}
+            </button>
+        </div>
+    </div>
+    <div style="display:flex; gap:10px; margin: 10px 0; padding:10px;">
+        <a class="share-button button-style edit-button" style="display:block; text-align: center;"
+           href="/edit-product/{{product.id}}" style="display:block;">Edit product</a>
+        <button class="button-style delete-button" style="display:block; text-align: center;" (click)="deleteProduct()">
+            Delete
+            product
+        </button>
+    </div>
+    <!--    ------------------------------------------------- -->
+    <hr>
+    <div class="similar-products">
+        <h3>Similar Products</h3>
+        <div *ngIf="similarProducts.length === 0">
+            <h4>
+                No similar products available
+            </h4>
+
+        </div>
+        <div class="similar-products-container">
+
+            <div class="product-card" *ngFor="let similarProduct of similarProducts">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-image-placeholder">
+                            <img src="{{ similarProduct.image }}" alt="{{ similarProduct.name }}"/>
+                        </div>
+                        <div class="card-body">
+                            <h3>
+                                <a [title]="similarProduct.name + ' details'"
+                                   href="/products/{{similarProduct.id}}"
+                                >
+                                    {{ similarProduct.name }}
+                                </a>
+                            </h3>
+
+                            <p *ngIf="similarProduct.description">
+                                Description: {{ similarProduct.description }} - ${{ similarProduct.price }}
+                            </p>
+
+                            <div class="button-container">
+                                <button type="button" (click)="addToCart(similarProduct)"
+                                        [disabled]="similarProduct.count === '0'"
+                                        class="buy-button">
+                                    {{ similarProduct.count > '0' ? 'But' : 'Out of Stock' }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
